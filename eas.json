@@ -9,7 +9,10 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EAS_SKIP_AUTO_FINGERPRINT": "1"
+      }
     },
     "production": {
       "autoIncrement": true

@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import * as ImagePicker from "expo-image-picker";
+import { useState } from "react";
 import {
-  View,
-  Text,
+  ActivityIndicator,
   Button,
   Image,
-  ActivityIndicator,
-  StyleSheet,
   ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
 import { getNutritionFromGemini } from "../../services/geminiService";
 
 export default function ScanScreen() {
@@ -18,7 +18,7 @@ export default function ScanScreen() {
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaType.Images,
+      mediaTypes: ['images'],
       quality: 0.7,
     });
 

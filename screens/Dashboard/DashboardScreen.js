@@ -121,7 +121,7 @@ export default function DashboardScreen({ navigation }) {
             }
 
             const result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaType.Images,
+                mediaTypes: ['images'],
                 quality: 0.7
             });
 
@@ -202,6 +202,34 @@ export default function DashboardScreen({ navigation }) {
         await deleteDoc(doc(db, "meals", id));
     };
 
+    // ================= GALLERY FOOD UPLOAD =================
+    const handleGalleryUpload = async () => {
+        try {
+            const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (!permission.granted) {
+                Alert.alert("Permission required to access gallery");
+                return;
+            }
+
+            const result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ['images'],
+                quality: 0.7,
+                base64: true
+            });
+
+            if (result.canceled) return;
+
+            const asset = result.assets[0];
+            navigation.navigate("Result", {
+                imageUri: asset.uri,
+                base64: asset.base64
+            });
+        } catch (error) {
+            console.log("Gallery Upload Error:", error);
+            Alert.alert("Error", "Could not open gallery.");
+        }
+    };
+
     // ================= RESET TODAY'S DATA =================
     const handleResetData = () => {
         Alert.alert(
@@ -274,8 +302,8 @@ export default function DashboardScreen({ navigation }) {
 
             {/* TOP BAR */}
             <View style={styles.topBar}>
-                <TouchableOpacity style={styles.profileButton} onPress={handleProfileUpload}>
-                    <Text style={styles.buttonText}>Update Profile</Text>
+                <TouchableOpacity style={styles.profileButton} onPress={() => navigation.navigate("ProfileSetup")}>
+                    <Text style={styles.buttonText}>Edit Profile</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={styles.logoutButton} onPress={logout}>
@@ -424,7 +452,7 @@ export default function DashboardScreen({ navigation }) {
             {/* Scan + Gallery */}
             <TouchableOpacity
                 style={styles.uploadButton}
-                onPress={() => navigation.navigate("Result")}
+                onPress={handleGalleryUpload}
             >
                 <Text style={styles.buttonText}>Upload From Gallery</Text>
             </TouchableOpacity>

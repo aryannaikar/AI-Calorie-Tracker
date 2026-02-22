@@ -1,9 +1,9 @@
 // context/AuthContext.js
 
-import React, { createContext, useEffect, useState } from "react";
-import { auth, db } from "../firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
+import { createContext, useEffect, useState } from "react";
+import { auth, db } from "../firebaseConfig";
 
 export const AuthContext = createContext();
 
@@ -37,8 +37,16 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.log("Logout Error:", error);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, profileExists }}>
+    <AuthContext.Provider value={{ user, profileExists, setProfileExists, logout }}>
       {!loading && children}
     </AuthContext.Provider>
   );

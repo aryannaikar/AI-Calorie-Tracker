@@ -1,15 +1,15 @@
 // navigation/StackNavigator.js
 
-import React, { useContext } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
-import LoginScreen from "../screens/Login/LoginScreen";
-import RegisterScreen from "../screens/Register/RegisterScreen";
-import ProfileSetupScreen from "../screens/ProfileSetup/ProfileSetupScreen";
 import DashboardScreen from "../screens/Dashboard/DashboardScreen";
-import ScanScreen from "../screens/Scan/ScanScreen";
+import LoginScreen from "../screens/Login/LoginScreen";
+import ProfileSetupScreen from "../screens/ProfileSetup/ProfileSetupScreen";
+import RegisterScreen from "../screens/Register/RegisterScreen";
 import ResultScreen from "../screens/Result/ResultScreen";
+import ScanScreen from "../screens/Scan/ScanScreen";
 
 const Stack = createStackNavigator();
 
@@ -24,6 +24,7 @@ export default function StackNavigator() {
             <Stack.Screen name="Dashboard" component={DashboardScreen} />
             <Stack.Screen name="Scan" component={ScanScreen} />
             <Stack.Screen name="Result" component={ResultScreen} />
+            <Stack.Screen name="ProfileSetup" component={ProfileSetupScreen} />
           </>
         ) : (
           <Stack.Screen

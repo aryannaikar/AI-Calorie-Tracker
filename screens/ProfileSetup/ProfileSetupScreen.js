@@ -1,20 +1,20 @@
 // screens/ProfileSetup/ProfileSetupScreen.js
 
-import React, { useState, useContext } from "react";
+import { doc, setDoc } from "firebase/firestore";
+import { useContext, useState } from "react";
 import {
-  View,
+  ScrollView,
+  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
-  ScrollView
+  View
 } from "react-native";
 import { AuthContext } from "../../context/AuthContext";
 import { db } from "../../firebaseConfig";
-import { doc, setDoc } from "firebase/firestore";
 
 export default function ProfileSetupScreen({ navigation }) {
-  const { user } = useContext(AuthContext);
+  const { user, profileExists, setProfileExists } = useContext(AuthContext);
 
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -117,7 +117,11 @@ Target Calories: ${goals.calorieGoal} kcal
 Protein Target: ${goals.proteinGoal} g`
       );
 
-      navigation.replace("Dashboard");
+      if (profileExists) {
+        navigation.goBack();
+      } else {
+        setProfileExists(true);
+      }
     } catch (error) {
       console.log(error);
       alert("Error saving profile");
