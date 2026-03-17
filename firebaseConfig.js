@@ -1,31 +1,19 @@
 // firebaseConfig.js
 
-import { initializeApp } from "firebase/app";
-import {
-  initializeAuth,
-  getReactNativePersistence
-} from "firebase/auth";
+import { getReactNativePersistence } from "@firebase/auth/react-native";
 import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
-
+import { initializeApp } from "firebase/app";
+import { initializeAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
-import {
-  FIREBASE_API_KEY,
-  FIREBASE_AUTH_DOMAIN,
-  FIREBASE_PROJECT_ID,
-  FIREBASE_STORAGE_BUCKET,
-  FIREBASE_MESSAGING_SENDER_ID,
-  FIREBASE_APP_ID
-} from "@env";
-
 const firebaseConfig = {
-  apiKey: FIREBASE_API_KEY,
-  authDomain: FIREBASE_AUTH_DOMAIN,
-  projectId: FIREBASE_PROJECT_ID,
-  storageBucket: FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
-  appId: FIREBASE_APP_ID
+  apiKey: "AIzaSyCXVz13vbiJifo-NwEw-d98A-Mtwz4bWMc",
+  authDomain: "foodapp-e3c92.firebaseapp.com",
+  projectId: "foodapp-e3c92",
+  storageBucket: "foodapp-e3c92.firebasestorage.app",
+  messagingSenderId: "76468980241",
+  appId: "1:76468980241:web:41325180c2e41047497fb0"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -36,4 +24,3 @@ export const auth = initializeAuth(app, {
 
 export const db = getFirestore(app);
 export const storage = getStorage(app);
-

@@ -11,8 +11,9 @@
       "**/*"
     ],
     "android": {
-      "package": "com.foodapp.aicalorietracker",
-      "versionCode": 2,
+      "package": "com.aifood.app",
+      "versionCode": 3,
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"

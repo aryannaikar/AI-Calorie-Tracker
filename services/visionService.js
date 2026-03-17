@@ -1,4 +1,4 @@
-import { GOOGLE_VISION_API_KEY } from "@env";
+const GOOGLE_VISION_API_KEY = "AIzaSyB3cwzDILoRFbWEvz1j_jLNXm3olTJtaXI";
 
 export const detectFood = async (base64Image) => {
   try {

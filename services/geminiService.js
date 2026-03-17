@@ -1,4 +1,4 @@
-import { GEMINI_API_KEY } from "@env";
+const GEMINI_API_KEY = "AIzaSyDNEhSbZKQg3k7tvnnquvEPBZcWCFoIp8o";
 
 // Send image directly to Gemini Vision — no Vision API needed
 export const getNutritionFromImage = async (base64Image) => {
